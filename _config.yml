@@ -50,6 +50,7 @@ about_profile_image: images/joannahong.jpeg
 about_content: | # this will include new lines to allow paragraphs
   Hello, my name is Joanna Hong, I am a PhD student in Electrical Engineering at Korea Advanced Institute of Science and Technology. I have experiences with mainly machine learning, especially in facial expression synthesis and multimodal learning. Now I am more focusing on multimodal learning in vision-audio matching.
   
+  
   I am most skilled in <mark>Python</mark> and <mark>Pytorch</mark>. 
 content:
   - title: Projects # Title for the section
