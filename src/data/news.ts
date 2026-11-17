@@ -6,12 +6,6 @@ export type NewsItem = { date: string; kind: string; text: string; href?: string
 export const news: NewsItem[] = [
   {
     date: '2026',
-    kind: 'paper',
-    text: 'MUTUD: Multimodal Training and Unimodal Deployment, accepted to TMLR.',
-    href: 'https://openreview.net/pdf?id=5bshBY8RDf',
-  },
-  {
-    date: '2026',
     kind: 'service',
     text: 'Co-organizing the Audio-Visual Generation and Learning Workshop at ECCV 2026.',
     href: 'https://avgen123.github.io/index.html',

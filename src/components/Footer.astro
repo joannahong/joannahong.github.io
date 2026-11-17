@@ -7,7 +7,6 @@ const year = new Date().getFullYear();
   <div class="container inner">
     <div class="links mono">
       {profile.links.map((l) => <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}
-      <a href="/rss.xml">RSS</a>
     </div>
     <div class="mono muted small">© {year} {profile.name} · {profile.location}</div>
   </div>

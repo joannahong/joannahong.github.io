@@ -55,17 +55,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'MUTUD: multimodal training, unimodal deployment',
-    org: 'Meta Reality Labs',
-    period: '2023 – 2024',
-    group: 'earlier',
-    summary:
-      'Robust audiovisual representation learning under missing modalities: recovering absent information when only audio or only video is available at inference time.',
-    tags: ['audio-visual', 'robustness', 'TMLR 2026'],
-    links: [{ label: 'paper', href: 'https://openreview.net/pdf?id=5bshBY8RDf' }],
-    featured: true,
-  },
-  {
     title: "Let's Go Real Talk: face-to-face spoken dialogue",
     org: 'KAIST',
     period: '2024',

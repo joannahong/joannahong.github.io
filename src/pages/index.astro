@@ -3,14 +3,11 @@ import Base from '../layouts/Base.astro';
 import Waveform from '../components/Waveform.astro';
 import PubItem from '../components/PubItem.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import PostList from '../components/PostList.astro';
 import { profile } from '../data/profile';
 import { news } from '../data/news';
 import { visibleProjects } from '../data/projects';
 import { selectedPublications } from '../data/publications';
-import { getPosts } from '../lib/posts';
 
-const posts = (await getPosts()).slice(0, 3);
 const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
 ---
 
@@ -86,17 +83,6 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     </ul>
   </section>
 
-  {
-    posts.length > 0 && (
-      <section class="section">
-        <div class="section-head">
-          <span>Writing</span>
-          <a href="/blog/">all posts →</a>
-        </div>
-        <PostList posts={posts} showYear />
-      </section>
-    )
-  }
 </Base>
 
 <script>
