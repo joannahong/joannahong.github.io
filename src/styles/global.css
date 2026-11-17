@@ -1,38 +1,45 @@
 /* ──────────────────────────────────────────────────────────────
    Design tokens. Style A "Minimal editorial", Slate Tint bg.
    ────────────────────────────────────────────────────────────── */
+/* ──────────────────────────────────────────────────────────────
+   Design tokens. Google DeepMind / Gemini-inspired:
+   Google Sans + Google Sans Code, Google blue accent,
+   Gemini gradient for small highlights. Slate Tint background.
+   ────────────────────────────────────────────────────────────── */
 :root {
   --bg: #f0f3f7;
-  --surface: #f7f9fb;
-  --fg: #16181c;
-  --sub: #3d434c;
-  --muted: #6b717b;
-  --accent: #c2410c;
-  --accent-soft: rgba(194, 65, 12, 0.08);
-  --line: rgba(15, 23, 42, 0.08);
-  --line-strong: rgba(15, 23, 42, 0.16);
-  --selection: rgba(194, 65, 12, 0.18);
+  --surface: #f8fafd;
+  --fg: #1f1f1f;
+  --sub: #444746;
+  --muted: #6b6e70;
+  --accent: #0b57d0;
+  --accent-soft: rgba(11, 87, 208, 0.08);
+  --line: rgba(31, 31, 31, 0.08);
+  --line-strong: rgba(31, 31, 31, 0.16);
+  --selection: rgba(11, 87, 208, 0.16);
+  --gemini: linear-gradient(90deg, #4285f4 0%, #9b72cb 55%, #d96570 100%);
 
-  --serif: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  --serif: 'Google Sans Variable', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Google Sans Variable', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'Google Sans Code Variable', 'Google Sans Code', ui-monospace, 'SF Mono', Menlo, monospace;
 
   --maxw: 760px;
-  --radius: 6px;
+  --radius: 12px;
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
   --bg: #0d1117;
-  --surface: #131922;
-  --fg: #ecedef;
-  --sub: #b5bac2;
-  --muted: #7f858f;
-  --accent: #f08a5d;
-  --accent-soft: rgba(240, 138, 93, 0.1);
+  --surface: #151b24;
+  --fg: #e3e3e3;
+  --sub: #c4c7c5;
+  --muted: #8e918f;
+  --accent: #a8c7fa;
+  --accent-soft: rgba(168, 199, 250, 0.12);
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
-  --selection: rgba(240, 138, 93, 0.25);
+  --selection: rgba(168, 199, 250, 0.25);
+  --gemini: linear-gradient(90deg, #6ea6ff 0%, #b393e6 55%, #f08a96 100%);
   color-scheme: dark;
 }
 
@@ -138,6 +145,13 @@ img {
   background: var(--line);
   order: 1;
 }
+.gemini-text {
+  background: var(--gemini);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .section-head a {
   order: 2;
   text-decoration: none;
@@ -146,11 +160,11 @@ img {
 }
 
 .page-title {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 500;
   font-size: clamp(30px, 5vw, 38px);
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin: 56px 0 8px;
 }
 .page-lede {
@@ -164,8 +178,8 @@ img {
   font-family: var(--mono);
   font-size: 11.5px;
   line-height: 1;
-  padding: 4px 7px;
-  border-radius: 4px;
+  padding: 5px 9px;
+  border-radius: 999px;
   border: 1px solid var(--line-strong);
   color: var(--sub);
   white-space: nowrap;
