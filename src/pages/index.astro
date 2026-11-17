@@ -17,7 +17,8 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
       <div class="eyebrow mono">
         {profile.role} · {profile.org} · {profile.location}
       </div>
-      <h1 class="serif">{profile.name}</h1>
+      <!-- Name already sits in the header on desktop; shown here only on mobile, where the header hides it. -->
+      <h1 class="serif mobile-name">{profile.name}</h1>
       <div class="bio">
         <p>
           I'm a research scientist on the <strong>{profile.team}</strong> team at <strong>{profile.org}</strong>, where I work on
@@ -107,17 +108,22 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     color: var(--muted);
     margin-bottom: 14px;
   }
-  h1 {
-    font-weight: 400;
-    font-size: clamp(40px, 6vw, 56px);
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-    margin: 0 0 22px;
+  .mobile-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
   .bio p {
     margin: 0 0 12px;
     color: var(--sub);
     max-width: 560px;
+  }
+  .bio p:first-child {
+    font-size: 18px;
+    color: var(--fg);
   }
   .bio strong {
     color: var(--fg);
@@ -142,7 +148,6 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     height: 168px;
     object-fit: cover;
     border-radius: 50%;
-    margin-top: 30px;
   }
 
   .news {
@@ -187,6 +192,18 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     padding: 0;
   }
 
+  @media (max-width: 600px) {
+    .mobile-name {
+      position: static;
+      width: auto;
+      height: auto;
+      clip: auto;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+  }
   @media (max-width: 700px) {
     .hero {
       grid-template-columns: 1fr;
