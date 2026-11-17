@@ -116,6 +116,7 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     letter-spacing: -0.025em;
     color: var(--fg);
     margin: 0 0 20px;
+    text-wrap: balance;
   }
   .mobile-name {
     position: absolute;
@@ -202,6 +203,10 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
   }
 
   @media (max-width: 600px) {
+    .headline {
+      font-size: 22px;
+      color: var(--sub);
+    }
     .mobile-name {
       position: static;
       width: auto;
@@ -211,7 +216,7 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
       font-size: 32px;
       letter-spacing: -0.02em;
       line-height: 1.1;
-      margin: 0 0 18px;
+      margin: 0 0 8px;
     }
   }
   @media (max-width: 700px) {
