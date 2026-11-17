@@ -76,16 +76,6 @@ export const projects: Project[] = [
     tags: ['LLM', 'pretraining', 'multilingual'],
     links: [{ label: 'model', href: 'https://huggingface.co/trillionlabs/Tri-21B' }],
   },
-  {
-    title: "Let's Go Real Talk: face-to-face spoken dialogue",
-    org: 'KAIST',
-    period: '2024',
-    group: 'earlier',
-    summary:
-      'A spoken dialogue model that takes audio-visual user input and generates audio-visual responses, a step toward avatar-style face-to-face conversation. ACL 2024 Oral and Outstanding Paper Award.',
-    tags: ['spoken dialogue', 'audio-visual', 'ACL 2024'],
-    links: [{ label: 'paper', href: 'https://aclanthology.org/2024.acl-long.860.pdf' }],
-  },
 ];
 
 export const visibleProjects = projects.filter((p) => !p.draft);
