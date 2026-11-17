@@ -17,9 +17,7 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
       <div class="eyebrow mono">
         {profile.role} · {profile.org} · {profile.location}
       </div>
-      <h1 class="serif">
-        I build models that<br />understand <em class="accent">how people speak.</em>
-      </h1>
+      <h1 class="serif">{profile.name}</h1>
       <div class="bio">
         <p>
           I'm a research scientist on the <strong>{profile.team}</strong> team at <strong>{profile.org}</strong>, where I work on
@@ -111,13 +109,10 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
   }
   h1 {
     font-weight: 400;
-    font-size: clamp(36px, 6vw, 50px);
+    font-size: clamp(40px, 6vw, 56px);
     line-height: 1.08;
     letter-spacing: -0.015em;
     margin: 0 0 22px;
-  }
-  h1 em {
-    font-style: italic;
   }
   .bio p {
     margin: 0 0 12px;

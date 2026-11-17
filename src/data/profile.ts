@@ -11,7 +11,6 @@ export const profile = {
   // Shown obfuscated on the page; mailto is assembled client-side.
   email: { user: 'joannahong', domain: 'ieee.org' },
   photo: '/profile.jpg',
-  tagline: 'I build models that understand how people speak.',
   description:
     'Joanna Hong is a Research Scientist on the Gemini Audio team at Google DeepMind, working on speech, audio, and multimodal machine learning.',
   cv: 'https://drive.google.com/file/d/13KFpzn6cYIgMsrixR8in64VSI-phJ0_n/view?usp=share_link',
