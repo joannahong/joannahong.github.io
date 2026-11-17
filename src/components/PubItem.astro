@@ -1,0 +1,87 @@
+---
+import { ME, type Publication } from '../data/publications';
+interface Props {
+  pub: Publication;
+  compact?: boolean;
+}
+const { pub, compact = false } = Astro.props;
+---
+
+<li class:list={['pub', { compact }]} data-year={pub.year} data-type={pub.type} data-search={`${pub.title} ${pub.authors.join(' ')} ${pub.venue} ${pub.short}`.toLowerCase()}>
+  <div class="meta">
+    <span class="badge">{pub.short}</span>
+  </div>
+  <div class="body">
+    <a class="title" href={pub.href} target="_blank" rel="noopener noreferrer">{pub.title}</a>
+    <div class="authors">
+      {
+        pub.authors.map((a, i) => (
+          <>
+            {a.replace('*', '') === ME ? <strong>{a}</strong> : <span>{a}</span>}
+            {i < pub.authors.length - 1 && ', '}
+          </>
+        ))
+      }
+    </div>
+    {!compact && <div class="venue">{pub.venue}</div>}
+    {
+      (pub.note || pub.award) && (
+        <div class="flags">
+          {pub.award && <span class="badge accent">★ {pub.award}</span>}
+          {pub.note && <span class="badge">{pub.note}</span>}
+        </div>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  .pub {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  .pub:first-child {
+    border-top: none;
+  }
+  .meta {
+    padding-top: 3px;
+  }
+  .title {
+    font-family: var(--serif);
+    font-size: 18.5px;
+    line-height: 1.35;
+    text-decoration: none;
+    display: block;
+  }
+  .compact .title {
+    font-size: 17.5px;
+  }
+  .authors {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--sub);
+  }
+  .authors strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .venue {
+    font-size: 13.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .flags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  @media (max-width: 600px) {
+    .pub {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+</style>

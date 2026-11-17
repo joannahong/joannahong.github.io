@@ -1,0 +1,232 @@
+---
+import Base from '../layouts/Base.astro';
+import Waveform from '../components/Waveform.astro';
+import PubItem from '../components/PubItem.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostList from '../components/PostList.astro';
+import { profile } from '../data/profile';
+import { news } from '../data/news';
+import { visibleProjects } from '../data/projects';
+import { selectedPublications } from '../data/publications';
+import { getPosts } from '../lib/posts';
+
+const posts = (await getPosts()).slice(0, 3);
+const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
+---
+
+<Base>
+  <section class="hero fade-in">
+    <div class="intro">
+      <div class="eyebrow mono">
+        {profile.role} · {profile.org} · {profile.location}
+      </div>
+      <h1 class="serif">
+        I build models that<br />understand <em class="accent">how people speak.</em>
+      </h1>
+      <div class="bio">
+        <p>
+          I'm a research scientist on the <strong>{profile.team}</strong> team at <strong>{profile.org}</strong>, where I work on
+          speech and audio understanding for Gemini, from core model capabilities to safety alignment for audio-in and audio-out
+          launches.
+        </p>
+        <p>
+          Before that I helped build multilingual LLMs at Trillion Labs, interned at Meta Reality Labs, and received my Ph.D.
+          from <a href="https://www.ivllab.kaist.ac.kr/people/professor" target="_blank" rel="noopener noreferrer">KAIST</a> with
+          Prof. Yong Man Ro. My thesis on human speech understanding through multimodal representation learning received the
+          Outstanding Dissertation Award.
+        </p>
+      </div>
+      <div class="cta mono">
+        <a href={profile.cv} target="_blank" rel="noopener noreferrer">CV ↗</a>
+        {profile.links.slice(0, 3).map((l) => <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label} ↗</a>)}
+        <a class="email" data-user={profile.email.user} data-domain={profile.email.domain} href="#">
+          {profile.email.user} [at] {profile.email.domain.replace('.', ' [dot] ')}
+        </a>
+      </div>
+    </div>
+    <img class="photo" src={profile.photo} alt={`Portrait of ${profile.name}`} width="400" height="400" />
+  </section>
+
+  <Waveform />
+
+  <section class="section">
+    <div class="section-head"><span>News</span></div>
+    <ul class="news">
+      {
+        news.slice(0, 5).map((n) => (
+          <li>
+            <span class="mono muted date">{n.date}</span>
+            <span class="kind mono">{n.kind}</span>
+            <span class="text">
+              {n.href ? (
+                <a href={n.href} target="_blank" rel="noopener noreferrer">
+                  {n.text}
+                </a>
+              ) : (
+                n.text
+              )}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Projects</span><a href="/projects/">all projects →</a></div>
+    <div class="grid">
+      {featured.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Selected publications</span><a href="/publications/">all →</a></div>
+    <ul class="plain">
+      {selectedPublications.map((p) => <PubItem pub={p} compact />)}
+    </ul>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="section">
+        <div class="section-head">
+          <span>Writing</span>
+          <a href="/blog/">all posts →</a>
+        </div>
+        <PostList posts={posts} showYear />
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  // Assemble the mailto link on the client to keep scrapers away.
+  document.querySelectorAll<HTMLAnchorElement>('a.email').forEach((a) => {
+    const addr = `${a.dataset.user}@${a.dataset.domain}`;
+    a.href = `mailto:${addr}`;
+    a.textContent = addr;
+  });
+</script>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 168px;
+    gap: 40px;
+    align-items: start;
+    margin-top: 64px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-weight: 400;
+    font-size: clamp(36px, 6vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 0 0 22px;
+  }
+  h1 em {
+    font-style: italic;
+  }
+  .bio p {
+    margin: 0 0 12px;
+    color: var(--sub);
+    max-width: 560px;
+  }
+  .bio strong {
+    color: var(--fg);
+    font-weight: 550;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 18px;
+    font-size: 13px;
+  }
+  .cta a {
+    text-decoration: none;
+    color: var(--muted);
+  }
+  .cta a:hover {
+    color: var(--accent);
+  }
+  .photo {
+    width: 168px;
+    height: 168px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 30px;
+  }
+
+  .news {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .news li {
+    display: grid;
+    grid-template-columns: 52px 72px 1fr;
+    gap: 12px;
+    padding: 7px 0;
+    font-size: 15px;
+    align-items: baseline;
+  }
+  .date {
+    font-size: 12.5px;
+  }
+  .kind {
+    font-size: 11.5px;
+    color: var(--accent);
+  }
+  .text a {
+    text-decoration: none;
+  }
+  .text a:hover {
+    text-decoration: underline;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  /* An odd last card spans the full row instead of leaving a hole. */
+  .grid > :global(:last-child:nth-child(odd)) {
+    grid-column: 1 / -1;
+  }
+  .plain {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 40px;
+    }
+    .photo {
+      order: -1;
+      width: 96px;
+      height: 96px;
+      margin: 0 0 24px;
+      border-radius: 50%;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .news li {
+      grid-template-columns: 44px 1fr;
+    }
+    .kind {
+      display: none;
+    }
+  }
+</style>

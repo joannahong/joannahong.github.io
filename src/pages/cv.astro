@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { experience, education, awards, service, teaching } from '../data/cv';
+import { profile } from '../data/profile';
+---
+
+<Base title="CV" description="Curriculum vitae of Joanna Hong.">
+  <h1 class="page-title fade-in">Curriculum Vitae</h1>
+  <p class="page-lede">
+    The short version. <a href={profile.cv} target="_blank" rel="noopener noreferrer">Download the full PDF ↗</a>
+  </p>
+
+  <section class="section">
+    <div class="section-head"><span>Experience</span></div>
+    {
+      experience.map((e) => (
+        <div class="row">
+          <div class="when mono">{e.period}</div>
+          <div>
+            <div class="what">
+              <span class="serif">{e.role}</span>, <span class="accent">{e.org}</span>
+            </div>
+            <p class="sub">{e.text}</p>
+            {e.people.length > 0 && (
+              <p class="muted small">
+                {e.people.map((p) => (
+                  <>
+                    {p.prefix}:{' '}
+                    <a href={p.href} target="_blank" rel="noopener noreferrer">
+                      {p.name}
+                    </a>
+                  </>
+                ))}
+              </p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Education</span></div>
+    {
+      education.map((e) => (
+        <div class="row">
+          <div class="when mono">{e.period}</div>
+          <div>
+            <div class="what">
+              <span class="serif">{e.degree}</span>, {e.org}
+            </div>
+            {e.note && <p class="sub">{e.note}</p>}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Awards</span></div>
+    {
+      awards.map((a) => (
+        <div class="row tight">
+          <div class="when mono">{a.year}</div>
+          <div>{a.text}</div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Service</span></div>
+    <div class="row">
+      <div class="when mono">organizing</div>
+      <ul class="list">
+        {service.organizing.map((s) => <li>{s.href ? <a href={s.href} target="_blank" rel="noopener noreferrer">{s.text}</a> : s.text}</li>)}
+      </ul>
+    </div>
+    <div class="row">
+      <div class="when mono">thesis</div>
+      <ul class="list">{service.thesis.map((s) => <li>{s}</li>)}</ul>
+    </div>
+    <div class="row">
+      <div class="when mono">reviewing</div>
+      <div>
+        <p class="sub small-cap mono">conferences</p>
+        <p class="inline">{service.conferences.join(' · ')}</p>
+        <p class="sub small-cap mono">journals</p>
+        <p class="inline">{service.journals.join(' · ')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Teaching (KAIST, TA)</span></div>
+    <ul class="list pad">{teaching.map((t) => <li>{t}</li>)}</ul>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Misc</span></div>
+    <div class="row tight">
+      <div class="when mono">languages</div>
+      <div>Korean (native), English (fluent)</div>
+    </div>
+    <div class="row tight">
+      <div class="when mono">off-hours</div>
+      <div>Working out, jogging, traveling</div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+  }
+  .row.tight {
+    padding: 5px 0;
+  }
+  .when {
+    font-size: 12.5px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .what {
+    font-size: 15px;
+  }
+  .what .serif {
+    font-size: 18.5px;
+  }
+  p {
+    margin: 4px 0 0;
+    font-size: 15px;
+  }
+  .small {
+    font-size: 13.5px;
+  }
+  .small-cap {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0;
+  }
+  .inline {
+    margin: 2px 0 12px;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 15px;
+  }
+  .list li {
+    padding: 2px 0;
+  }
+  .list a {
+    text-decoration: none;
+  }
+  .list a:hover {
+    text-decoration: underline;
+  }
+  .pad {
+    padding-left: 132px;
+  }
+  @media (max-width: 600px) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+    .pad {
+      padding-left: 0;
+    }
+  }
+</style>

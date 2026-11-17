@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import { byYearDesc } from '../data/publications';
+import { profile } from '../data/profile';
+
+const years = [...new Set(byYearDesc.map((p) => p.year))];
+const scholar = profile.links.find((l) => l.label === 'Scholar')?.href;
+const counts = {
+  all: byYearDesc.length,
+  conference: byYearDesc.filter((p) => p.type === 'conference').length,
+  journal: byYearDesc.filter((p) => p.type === 'journal').length,
+};
+---
+
+<Base title="Publications" description="Publications by Joanna Hong on speech, audio, and multimodal machine learning.">
+  <h1 class="page-title fade-in">Publications</h1>
+  <p class="page-lede">
+    * denotes equal contribution. Full list on <a href={scholar} target="_blank" rel="noopener noreferrer">Google Scholar</a>.
+  </p>
+
+  <div class="controls">
+    <div class="filters mono" role="group" aria-label="Filter by type">
+      <button class="chip active" data-filter="all">all <span>{counts.all}</span></button>
+      <button class="chip" data-filter="conference">conference <span>{counts.conference}</span></button>
+      <button class="chip" data-filter="journal">journal <span>{counts.journal}</span></button>
+    </div>
+    <input id="q" class="search mono" type="search" placeholder="search papers, authors, venues" aria-label="Search publications" />
+  </div>
+
+  {
+    years.map((y) => (
+      <section class="year-block" data-year-block={y}>
+        <div class="section-head">
+          <span>{y}</span>
+        </div>
+        <ul class="plain">
+          {byYearDesc
+            .filter((p) => p.year === y)
+            .map((p) => (
+              <PubItem pub={p} />
+            ))}
+        </ul>
+      </section>
+    ))
+  }
+  <p id="empty" class="muted mono" hidden>No matches.</p>
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const q = document.getElementById('q') as HTMLInputElement;
+  const items = document.querySelectorAll<HTMLLIElement>('li.pub');
+  const blocks = document.querySelectorAll<HTMLElement>('[data-year-block]');
+  const empty = document.getElementById('empty')!;
+  let filter = 'all';
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    let shown = 0;
+    items.forEach((li) => {
+      const ok = (filter === 'all' || li.dataset.type === filter) && (!term || li.dataset.search!.includes(term));
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    blocks.forEach((b) => (b.hidden = !b.querySelector('li.pub:not([hidden])')));
+    empty.hidden = shown > 0;
+  }
+  chips.forEach((c) =>
+    c.addEventListener('click', () => {
+      chips.forEach((x) => x.classList.remove('active'));
+      c.classList.add('active');
+      filter = c.dataset.filter!;
+      apply();
+    }),
+  );
+  q.addEventListener('input', apply);
+</script>
+
+<style>
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 32px 0 8px;
+  }
+  .filters {
+    display: flex;
+    gap: 6px;
+  }
+  .chip {
+    font: inherit;
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--sub);
+    cursor: pointer;
+  }
+  .chip span {
+    color: var(--muted);
+    margin-left: 2px;
+  }
+  .chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .chip.active span {
+    color: inherit;
+  }
+  .search {
+    font-size: 13px;
+    padding: 6px 12px;
+    min-width: 280px;
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--fg);
+    outline: none;
+  }
+  .search:focus {
+    border-color: var(--accent);
+  }
+  .year-block {
+    margin-top: 40px;
+  }
+  .year-block .section-head {
+    margin-bottom: 4px;
+  }
+  .plain {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

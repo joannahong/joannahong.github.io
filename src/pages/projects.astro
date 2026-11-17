@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { visibleProjects } from '../data/projects';
+
+const google = visibleProjects.filter((p) => p.group === 'google');
+const earlier = visibleProjects.filter((p) => p.group === 'earlier');
+---
+
+<Base title="Projects" description="Projects by Joanna Hong at Google DeepMind, Trillion Labs, Meta Reality Labs, and KAIST.">
+  <h1 class="page-title fade-in">Projects</h1>
+  <p class="page-lede">Things I've built and shipped, from Gemini's audio stack to multilingual LLMs and audio-visual speech models.</p>
+
+  <section class="section">
+    <div class="section-head"><span>Google DeepMind</span></div>
+    <div class="stack">{google.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span>Earlier</span></div>
+    <div class="stack">{earlier.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+</Base>
+
+<style>
+  .stack {
+    display: grid;
+    gap: 16px;
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import { nav, profile } from '../data/profile';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => {
+  const h = href.replace(/\/$/, '') || '/';
+  return h === '/' ? path === '/' : path === h || path.startsWith(h + '/');
+};
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="logo serif" aria-label="Home">{profile.name}</a>
+    <nav aria-label="Main">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <button id="theme-toggle" class="toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  btn?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.classList.add('theme-switching');
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 16px;
+  }
+  .logo {
+    font-size: 18px;
+    text-decoration: none;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  ul {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: var(--fg);
+  }
+  nav a.active {
+    color: var(--accent);
+  }
+  .toggle {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .icon-sun {
+    display: none;
+  }
+  :global([data-theme='dark']) .icon-sun {
+    display: block;
+  }
+  :global([data-theme='dark']) .icon-moon {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+      display: none;
+    }
+    .bar {
+      justify-content: center;
+    }
+    nav,
+    ul {
+      gap: 14px;
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import { profile } from '../data/profile';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="links mono">
+      {profile.links.map((l) => <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="mono muted small">© {year} {profile.name} · {profile.location}</div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 120px;
+    border-top: 1px solid var(--line);
+    padding: 28px 0 40px;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 13px;
+  }
+  .links a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .links a:hover {
+    color: var(--accent);
+  }
+  .small {
+    font-size: 12px;
+  }
+</style>

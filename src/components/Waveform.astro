@@ -1,0 +1,46 @@
+---
+// Decorative animated waveform, a nod to speech & audio work.
+// Bar heights are deterministic so the build is stable.
+const N = 64;
+const bars = Array.from({ length: N }, (_, i) => {
+  const x = i / (N - 1);
+  const env = Math.sin(Math.PI * x) ** 0.8; // fade at the edges
+  const v = 0.25 + 0.75 * Math.abs(Math.sin(i * 1.7) * 0.6 + Math.sin(i * 0.43) * 0.4);
+  return Math.max(0.08, env * v);
+});
+---
+
+<div class="wave" aria-hidden="true">
+  {bars.map((h, i) => <span style={`--h:${h.toFixed(3)};--d:${(i * 0.045).toFixed(3)}s`} />)}
+</div>
+
+<style>
+  .wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 36px;
+    margin: 36px 0 0;
+    opacity: 0.9;
+  }
+  span {
+    flex: 1;
+    max-width: 4px;
+    height: calc(var(--h) * 100%);
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: calc(0.35 + var(--h) * 0.65);
+    transform-origin: center;
+    animation: breathe 2.4s ease-in-out infinite;
+    animation-delay: var(--d);
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scaleY(0.55);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+</style>
