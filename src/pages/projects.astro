@@ -9,10 +9,14 @@ const earlier = visibleProjects.filter((p) => p.group === 'earlier');
 
 <Base title="Projects" description="Projects by Joanna Hong at Google DeepMind, Trillion Labs, Meta Reality Labs, and KAIST.">
   <h1 class="page-title fade-in">Projects</h1>
-  <p class="page-lede">Things I've built and shipped, from Gemini's audio stack to multilingual LLMs and audio-visual speech models.</p>
+  <p class="page-lede">Things I've built and shipped, from Gemini audio launches to multilingual LLMs and audio-visual speech models.</p>
 
   <section class="section">
     <div class="section-head"><span>Google DeepMind</span></div>
+    <p class="intro sub">
+      On the Gemini Audio team I work on speech and audio understanding for Gemini, from core model capabilities to safety
+      alignment for audio-in and audio-out launches. Launches I contributed to:
+    </p>
     <div class="stack">{google.map((p) => <ProjectCard project={p} />)}</div>
   </section>
 
@@ -23,6 +27,11 @@ const earlier = visibleProjects.filter((p) => p.group === 'earlier');
 </Base>
 
 <style>
+  .intro {
+    margin: 0 0 20px;
+    max-width: 620px;
+    font-size: 15.5px;
+  }
   .stack {
     display: grid;
     gap: 16px;

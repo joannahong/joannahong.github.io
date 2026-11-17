@@ -19,27 +19,50 @@ export type Project = {
 export const projects: Project[] = [
   // ── Google DeepMind ────────────────────────────────────────
   {
-    title: 'Gemini Audio: speech & audio understanding',
-    org: 'Google DeepMind',
-    period: '2025 – present',
-    group: 'google',
-    summary:
-      'Developing state-of-the-art speech and audio understanding models for Gemini, driving both core model capabilities and safety alignment for audio-in and audio-out launches.',
-    tags: ['Gemini', 'speech', 'audio LLMs', 'safety'],
-    featured: true,
-  },
-  // TODO(Joanna): add publicly announced Google launches from LinkedIn here.
-  // Copy this block, fill it in, and remove `draft: true` to publish.
-  {
-    title: 'Launch name',
-    org: 'Google DeepMind',
+    title: 'Gemini 3.5 Transcribe',
+    org: 'Google AI Studio',
     period: '2026',
     group: 'google',
-    summary: 'One or two sentences on what shipped and what you owned.',
-    tags: ['Gemini'],
-    links: [{ label: 'announcement', href: 'https://blog.google/' }],
+    summary: 'Intelligent transcription with Gemini, available to developers in Google AI Studio.',
+    tags: ['Gemini', 'ASR', 'transcription'],
+    links: [{ label: 'announcement', href: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/' }],
     featured: true,
-    draft: true,
+  },
+  {
+    title: 'Speak to Window in Gemini for macOS',
+    org: 'Gemini app · macOS',
+    period: '2026',
+    group: 'google',
+    summary: 'Natural voice input in the Gemini desktop app for macOS, bringing speech and multimodal AI into people’s everyday workflows.',
+    tags: ['Gemini app', 'dictation', 'multimodal'],
+    links: [
+      { label: 'announcement', href: 'https://blog.google/innovation-and-ai/products/gemini-app/speak-naturally-gemini-app-mac-os/' },
+      { label: 'download', href: 'https://gemini.google/desktop/' },
+    ],
+    featured: true,
+  },
+  {
+    title: 'Rambler in Gboard',
+    org: 'Gboard · Pixel 11',
+    period: '2026',
+    group: 'google',
+    summary: 'A new voice typing experience in Gboard, launched with Pixel 11.',
+    tags: ['Gboard', 'Pixel', 'voice typing'],
+    links: [{ label: 'announcement', href: 'https://blog.google/products-and-platforms/devices/pixel/pixel-11-features/' }],
+    featured: true,
+  },
+  {
+    title: 'Gemini 2.5 Pro & Flash TTS',
+    org: 'Google Cloud · Vertex AI',
+    period: '2025',
+    group: 'google',
+    summary: 'Gemini text-to-speech models made generally available to developers and businesses on Vertex AI. My first launch at Google DeepMind.',
+    tags: ['Gemini', 'TTS', 'Vertex AI'],
+    links: [
+      { label: 'announcement', href: 'https://cloud.google.com/blog/products/ai-machine-learning/building-momentum-for-gen-media-including-nano-banana-/' },
+      { label: 'docs', href: 'https://docs.cloud.google.com/text-to-speech/docs/gemini-tts' },
+    ],
+    featured: true,
   },
 
   // ── Earlier ────────────────────────────────────────────────
@@ -49,10 +72,9 @@ export const projects: Project[] = [
     period: '2024 – 2025',
     group: 'earlier',
     summary:
-      'Multilingual large language models built for practical, real-world use, part of Trillion Labs’ effort to build a strong Korean foundation model. Worked on model architecture and training infrastructure.',
+      'As a founding team member, worked on model architecture and training infrastructure for multilingual LLMs built for real-world deployment, part of Trillion Labs’ effort to build Korea’s most powerful foundation model. Tri-21B was released open source.',
     tags: ['LLM', 'pretraining', 'multilingual'],
     links: [{ label: 'model', href: 'https://huggingface.co/trillionlabs/Tri-21B' }],
-    featured: true,
   },
   {
     title: "Let's Go Real Talk: face-to-face spoken dialogue",

@@ -5,14 +5,14 @@ export const experience = [
     role: 'Research Scientist',
     org: 'Google DeepMind',
     period: '2025 – present',
-    text: 'Speech and audio understanding models for Gemini: core model capabilities and safety alignment for audio-in and audio-out launches.',
+    text: 'Speech and audio understanding models for Gemini: core model capabilities and safety alignment for audio-in and audio-out launches. Contributed to Gemini 3.5 Transcribe, Speak to Window (Gemini for macOS), Rambler in Gboard (Pixel 11), and Gemini 2.5 TTS on Vertex AI.',
     people: [{ prefix: 'Manager', name: 'Dr. Quan Wang', href: 'https://wangquan.me/' }],
   },
   {
     role: 'Member of Technical Staff',
     org: 'Trillion Labs',
     period: '2024 – 2025',
-    text: 'Contributed to Trillion-7B and Tri-21B, multilingual LLMs for practical, real-world applications. Worked on model architecture and training infrastructure.',
+    text: 'Founding team member. Contributed to Trillion-7B and Tri-21B, multilingual LLMs for practical, real-world applications. Worked on model architecture and training infrastructure.',
     people: [],
   },
   {
@@ -44,7 +44,7 @@ export const awards = [
 export const service = {
   organizing: [
     { text: 'Onsite Coordinator, SANE 2025', href: 'https://www.saneworkshop.org/sane2025/' },
-    { text: 'Organizer, Audio-Visual Generation and Learning Workshop, ECCV 2024 & 2026', href: 'https://avgen123.github.io/index.html' },
+    { text: 'Organizer, Audio-Visual Generation and Learning Workshop, ECCV 2024 & 2026', href: 'https://avgen123.github.io/eccv26.html' },
     { text: 'Organizing Committee, KAIST AI World Cup 2018' },
   ],
   thesis: ['PRHLT, Universitat Politècnica de València (2025)'],
