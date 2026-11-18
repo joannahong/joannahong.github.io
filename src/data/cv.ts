@@ -48,8 +48,8 @@ export const awards = [
 
 export const service = {
   organizing: [
-    { text: 'Onsite Coordinator, SANE 2025', href: 'https://www.saneworkshop.org/sane2025/' },
     { text: 'Organizer, Audio-Visual Generation and Learning Workshop, ECCV 2024 & 2026', href: 'https://avgen123.github.io/eccv26.html' },
+    { text: 'Onsite Coordinator, SANE 2025', href: 'https://www.saneworkshop.org/sane2025/' },
     { text: 'Organizing Committee, KAIST AI World Cup 2018' },
   ],
   thesis: ['PRHLT, Universitat Politècnica de València (2025)'],
