@@ -18,7 +18,6 @@ export const profile = {
     { label: 'Scholar', href: 'https://scholar.google.com/citations?user=wqvP0D8AAAAJ&hl=en' },
     { label: 'GitHub', href: 'https://github.com/joannahong' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hongjoanna/' },
-    { label: 'Instagram', href: 'https://www.instagram.com/joxoxoanna/' },
   ],
 };
 
