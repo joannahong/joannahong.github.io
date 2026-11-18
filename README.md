@@ -25,6 +25,12 @@ npm run dev        # → http://localhost:4321
 
 ## Deploying
 
-Pushing to `main` builds and deploys automatically via `.github/workflows/deploy.yml`.
+```sh
+npm run deploy
+```
 
-One-time setup: on GitHub, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+This builds the site and pushes the static files to the **`2027`** branch, which GitHub Pages
+serves directly (**Settings → Pages → Deploy from a branch → `2027` / root**). It also pushes the
+source code to the **`2027-src`** branch. Commit your changes before deploying.
+
+To roll back to the previous site, switch the Pages branch back to `new`.
