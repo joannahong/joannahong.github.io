@@ -161,6 +161,9 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     height: 168px;
     object-fit: cover;
     border-radius: 50%;
+    /* The source JPG is a circle on a white square whose circle is ~0.5% smaller than
+       the frame, which leaves a hairline white ring. Clip slightly inside it. */
+    clip-path: circle(48.8% at 50% 50%);
   }
 
   .news {
