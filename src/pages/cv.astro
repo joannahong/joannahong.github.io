@@ -55,7 +55,20 @@ const split = (s: string) => {
             <div class="what">
               <span class="serif">{e.degree}</span>, {e.org}
             </div>
-            {e.note && <p class="sub">{e.note}</p>}
+            {e.details?.map((d) => (
+              <p class="sub">
+                <span class="muted">{d.label}:</span>{' '}
+                {d.href ? (
+                  <a href={d.href} target="_blank" rel="noopener noreferrer">
+                    {d.text}
+                  </a>
+                ) : d.em ? (
+                  <em>{d.text}</em>
+                ) : (
+                  d.text
+                )}
+              </p>
+            ))}
           </div>
         </div>
       ))

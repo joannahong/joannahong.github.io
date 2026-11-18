@@ -24,12 +24,17 @@ export const experience = [
   },
 ];
 
-export const education = [
+type Detail = { label: string; text: string; href?: string; em?: boolean };
+
+export const education: { degree: string; org: string; period: string; details?: Detail[] }[] = [
   {
     degree: 'Ph.D. in Electrical Engineering',
     org: 'KAIST',
     period: '2020 – 2024',
-    note: 'Advisor: Prof. Yong Man Ro. Thesis on human speech understanding via multimodal representation learning.',
+    details: [
+      { label: 'Advisor', text: 'Prof. Yong Man Ro', href: 'https://www.ivllab.kaist.ac.kr/people/professor' },
+      { label: 'Thesis', text: 'Delving into Human Speech Understanding through Multimodal Representation Learning', em: true },
+    ],
   },
   { degree: 'M.S. in Electrical Engineering', org: 'KAIST', period: '2019 – 2020' },
   { degree: 'B.S. in Electrical Engineering', org: 'KAIST', period: '2014 – 2019' },
