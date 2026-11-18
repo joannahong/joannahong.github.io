@@ -125,7 +125,7 @@ img {
 
 /* Section label, e.g. "SELECTED PUBLICATIONS ——— all →" */
 .section {
-  margin-top: 72px;
+  margin-top: 65px;
 }
 .section-head {
   display: flex;
