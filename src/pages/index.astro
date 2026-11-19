@@ -14,6 +14,9 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
 <Base>
   <section class="hero fade-in">
     <div class="intro">
+      <div class="eyebrow mono">
+        {profile.role} · {profile.org} · {profile.location}
+      </div>
       <!-- Name already sits in the header on desktop; shown here only on mobile, where the header hides it. -->
       <h1 class="serif mobile-name">{profile.name}</h1>
       <p class="headline">Speech, audio, and multimodal AI.</p>
@@ -97,6 +100,13 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     gap: 40px;
     align-items: start;
     margin-top: 64px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
   }
   .headline {
     font-size: clamp(28px, 4.6vw, 36px);

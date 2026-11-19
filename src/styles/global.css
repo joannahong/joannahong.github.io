@@ -130,20 +130,33 @@ img {
 .section-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 16px;
-  margin-bottom: 18px;
-  font-family: var(--sans);
-  font-size: 19px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-}
-.section-head a {
-  font-size: 14px;
-  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
+}
+.section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  order: 1;
+}
+.gemini-text {
+  background: var(--gemini);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-head a {
+  order: 2;
   text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0;
 }
 .section-head a:hover {
   color: var(--accent);
