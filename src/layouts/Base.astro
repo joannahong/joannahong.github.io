@@ -43,7 +43,7 @@ const ogImage = new URL(profile.photo, Astro.site);
     <script is:inline>
       (() => {
         // Light by default; dark only if the visitor picked it with the toggle.
-        document.documentElement.dataset.theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = localStorage.getItem('jh-theme') === 'dark' ? 'dark' : 'light';
       })();
     </script>
   </head>
