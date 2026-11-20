@@ -1,0 +1,108 @@
+---
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+}
+const { project: p } = Astro.props;
+const primary = p.links?.[0]?.href;
+---
+
+<article class="row">
+  {
+    p.image && (
+      <a class="thumb" href={primary} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+        <img src={p.image} alt="" width="480" height="270" loading="lazy" decoding="async" />
+      </a>
+    )
+  }
+  <div class="body">
+    <h3>
+      {primary ? <a href={primary} target="_blank" rel="noopener noreferrer">{p.title}</a> : p.title}
+    </h3>
+    <div class="meta">{p.org} · {p.period}</div>
+    <p class="summary">{p.summary}</p>
+    {
+      p.links && p.links.length > 1 && (
+        <div class="links">
+          {p.links.slice(1).map((l) => (
+            <a href={l.href} target="_blank" rel="noopener noreferrer">
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 22px;
+    align-items: start;
+    padding: 16px 0;
+  }
+  .row + .row {
+    border-top: 1px solid var(--line);
+  }
+  .thumb {
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--line);
+    background: var(--surface);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  h3 {
+    margin: 0;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a:hover {
+    text-decoration: underline;
+  }
+  .meta {
+    margin-top: 2px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .summary {
+    margin: 6px 0 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--sub);
+  }
+  .links {
+    display: flex;
+    gap: 14px;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    .row {
+      grid-template-columns: 112px 1fr;
+      gap: 14px;
+    }
+    .summary {
+      font-size: 13.5px;
+    }
+  }
+</style>

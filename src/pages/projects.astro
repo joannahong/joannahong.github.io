@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
 import { visibleProjects } from '../data/projects';
 
 const google = visibleProjects.filter((p) => p.group === 'google');
@@ -17,12 +17,12 @@ const earlier = visibleProjects.filter((p) => p.group === 'earlier');
       On the Gemini Audio team I work on speech and audio understanding for Gemini, from core model capabilities to safety
       alignment for audio-in and audio-out launches. Launches I contributed to:
     </p>
-    <div class="stack">{google.map((p) => <ProjectCard project={p} />)}</div>
+    <div class="stack">{google.map((p) => <ProjectRow project={p} />)}</div>
   </section>
 
   <section class="section">
     <div class="section-head"><span>Earlier</span></div>
-    <div class="stack">{earlier.map((p) => <ProjectCard project={p} />)}</div>
+    <div class="stack">{earlier.map((p) => <ProjectRow project={p} />)}</div>
   </section>
 </Base>
 
@@ -33,7 +33,6 @@ const earlier = visibleProjects.filter((p) => p.group === 'earlier');
     font-size: 14.5px;
   }
   .stack {
-    display: grid;
-    gap: 16px;
+    margin-top: -16px;
   }
 </style>

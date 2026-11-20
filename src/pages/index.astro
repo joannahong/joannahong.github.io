@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Waveform from '../components/Waveform.astro';
 import PubItem from '../components/PubItem.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
 import { profile } from '../data/profile';
 import { news } from '../data/news';
 import { visibleProjects } from '../data/projects';
@@ -70,8 +70,8 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
 
   <section class="section">
     <div class="section-head"><span>Projects</span><a href="/projects/">View all</a></div>
-    <div class="grid">
-      {featured.map((p) => <ProjectCard project={p} />)}
+    <div class="rows">
+      {featured.map((p) => <ProjectRow project={p} />)}
     </div>
   </section>
 
@@ -188,14 +188,8 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
     text-decoration: underline;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  /* An odd last card spans the full row instead of leaving a hole. */
-  .grid > :global(:last-child:nth-child(odd)) {
-    grid-column: 1 / -1;
+  .rows {
+    margin-top: -16px;
   }
   .plain {
     list-style: none;
@@ -232,9 +226,6 @@ const featured = visibleProjects.filter((p) => p.featured).slice(0, 4);
       height: 96px;
       margin: 0 0 24px;
       border-radius: 50%;
-    }
-    .grid {
-      grid-template-columns: 1fr;
     }
     .news li {
       grid-template-columns: 44px 1fr;
